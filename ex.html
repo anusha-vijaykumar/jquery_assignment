@@ -1,0 +1,109 @@
+<html>
+	<head>
+		<script type="text/javascript" src="https://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			$("a").click(function(event){
+				$("table").each(function() {
+					var $this = $(this);
+					var newrows = [];
+					$this.find("tr").each(function(){
+						var i = 0;
+						$(this).find("td").each(function(){
+							i++;
+							if(newrows[i] === undefined) { newrows[i] = $("<tr></tr>"); }
+							newrows[i].append($(this));
+						});
+					});
+					$this.find("tr").remove();
+					$.each(newrows, function(){
+					$this.append(this);
+				});
+			});
+    
+			return false;
+		});
+	});
+
+
+
+		function change(){
+		// alert("ji");
+			var oTable = document.getElementById('table');
+			var rowLength = oTable.rows.length;
+			for (i = 0; i < rowLength; i++){
+				var oCells = oTable.rows.item(i).cells;
+				var cellLength = oCells.length;
+				//document.write(cellLength);
+				document.write("<table>")
+				//loops through each cell in current row
+				for(var j = 0; j < cellLength; j++){
+					var cellVal = oCells.item(j).innerHTML;
+					document.write('<style> td {font-weight:bold; border:1px solid pink; background-color:pink;width:420px;height:80px}</style>');
+					document.write("<td>");
+					document.write("<br / >");
+					document.write(cellVal);
+					//document.write("<br / >");
+					document.write("</td>");
+				}
+			}
+			/*document.write("</table>")
+	document.write("<html><a class= \"button\" href=\"#\">Click Me</a><br/>");
+	document.write("<br />");
+	document.write("<a class = \"button\" onclick=\"change()\" href=\"#\">Change</a></html>");*/
+		}
+	
+	
+	
+		</script>
+	</head>
+	<style>
+		.myclass{
+		background-color:pink;
+		width:50px;
+		font-weight:bold;}
+		
+		td {
+		height=50px;
+		border: 1px solid pink;
+		width=50px;
+		padding:40px;
+		background-color:pink;
+		}
+		.button {
+		display: block;
+		width: 115px;
+		height: 25px;
+		background: #4E9CAF;
+		padding: 10px;
+		text-align: center;
+		border-radius: 5px;
+		color: white;
+		font-weight: bold;
+		}
+	</style>
+	<body>
+		<table id="table">
+		<tr>
+			<td>1</td>
+			<td>2</td>
+        </tr>
+		<tr>
+			<td>3</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>6</td>
+		</tr>
+		<tr>
+			<td>7</td>
+			<td>8</td>
+		</tr>
+		</table>
+		<a class= "button" href="#">Change 1</a><br/>
+		<br />
+		<a class = "button" onclick="change()" href="#">Change 2</a>
+			
+	</body>
+</html>
